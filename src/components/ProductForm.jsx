@@ -1,6 +1,22 @@
+import { useState, useEffect } from "react";
+
 function ProductForm() {
+  const [productName, setProductName] = useState("");
+  const [productImage, setProductImage] = useState("");
+  const [productPrice, setProductPrice] = useState();
+  const [productDescription, setProductDescription] = useState("");
+
+  let productInfo = (event) => {
+    event.preventDefault();
+    alert(`
+      "name": ${productName},
+      "price": ${productPrice},
+      "image": ${productImage},
+      "description": ${productDescription}`);
+  };
+
   return (
-    <form className="post-form">
+    <form className="post-form" onSubmit={productInfo}>
       <h1>Create Product Form</h1>
       <div className="input-container">
         <label>
@@ -9,8 +25,11 @@ function ProductForm() {
             id="name"
             name="name"
             type="text"
+            value={productName}
             placeholder="Enter name here"
-            onChange={() => {}}
+            onChange={(event) => {
+              setProductName(event.target.value);
+            }}
           />
         </label>
       </div>
@@ -21,8 +40,11 @@ function ProductForm() {
             id="image"
             name="image"
             type="text"
+            value={productImage}
             placeholder="Enter image url here"
-            onChange={() => {}}
+            onChange={(event) => {
+              setProductImage(event.target.value);
+            }}
           />
         </label>
       </div>
@@ -33,8 +55,11 @@ function ProductForm() {
             id="price"
             name="price"
             type="number"
+            value={productPrice}
             placeholder="Enter price here"
-            onChange={() => {}}
+            onChange={(event) => {
+              setProductPrice(event.target.value);
+            }}
           />
         </label>
       </div>
@@ -45,8 +70,11 @@ function ProductForm() {
             id="description"
             name="description"
             type="text"
+            value={productDescription}
             placeholder="Enter description here"
-            onChange={() => {}}
+            onChange={(event) => {
+              setProductDescription(event.target.value);
+            }}
             rows={4}
             cols={30}
           />
